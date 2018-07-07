@@ -9,6 +9,7 @@
 #import "AKPresentView.h"
 #import "AKLineView.h"
 #import "AKArrowView.h"
+#import "AKView.h"
 static const CGFloat AlphaVisibleThreshold = 0.1f;
 @interface AKPresentView()
 @property (nonatomic, assign) NSTimeInterval firstTouchTimeInterval;
@@ -230,14 +231,14 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
 }
 
 - (AKView *)viewOfPointAt:(CGPoint)point{
-    __block AKView *AKView = [[AKView alloc] init];
+    __block AKView *akView = [[AKView alloc] init];
     [self.drawViewArray enumerateObjectsWithOptions:NSEnumerationReverse usingBlock:^(AKView * _Nonnull view, NSUInteger idx, BOOL * _Nonnull stop) {
         //判断view是否是AKLineView，使用点到直线的距离去判断
         if ([view isKindOfClass:[AKLineView class]]) {
             AKLineView *lineView = (AKLineView *)view;
             if ([lineView isPonitAtLine:point]) {
                 NSLog(@"you touch : %@",[lineView description]);
-                AKView = lineView;
+                akView = lineView;
                 *stop = YES;
                 return;
             }
@@ -248,7 +249,7 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
             if (arrowView.arrowStyle == AKArrowStyle_Normal) {
                 if ([arrowView isPointAtArrow:point]) {
                     NSLog(@"you touch : %@",[arrowView description]);
-                    AKView = arrowView;
+                    akView = arrowView;
                     *stop = YES;
                     return;
                 }
@@ -257,17 +258,17 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
         //其他的图像使用点是否在图像的曲线里面去判断
         if(CGPathContainsPoint(view.bezierPath.CGPath, NULL, point, YES)){
             NSLog(@"you touch : %@",[view description]);
-            AKView = view;
+            akView = view;
             *stop = YES;
             return;
         }
         
-        AKView = nil;
+        akView = nil;
     }];
     if (!self.drawViewArray.count) {
-        AKView = nil;
+        akView = nil;
     }
-    return AKView;
+    return akView;
 }
 @end
 
