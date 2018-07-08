@@ -24,7 +24,10 @@
 - (UIBezierPath *)bezierPath {
     
     CGPoint point = [self translateAKPointToCGPoint:self.originPoint];
-    self.imageRect = CGRectMake(point.x, point.y, (CGFloat)self.imageWidth/SOURCE_WIDTH*self.presentViewSize.width, (CGFloat)self.imageHeight/SOURCE_HEIGHT*self.presentViewSize.height);
+    self.imageRect = CGRectMake(point.x
+                                , point.y
+                                , (CGFloat)self.imageWidth/SOURCE_WIDTH*self.presentViewSize.width
+                                , (CGFloat)self.imageHeight/SOURCE_HEIGHT*self.presentViewSize.height);
     return [UIBezierPath bezierPathWithRect:self.imageRect];
 }
 
@@ -40,7 +43,7 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"Image with Rect (%d,%d,%ld,%ld)",self.originPoint.x,self.originPoint.y,(long)self.imageWidth,(long)self.imageHeight];
+    return [NSString stringWithFormat:@"Image with Rect (%.2lf,%.2lf,%ld,%ld)",self.originPoint.x,self.originPoint.y,(long)self.imageWidth,(long)self.imageHeight];
 }
 
 

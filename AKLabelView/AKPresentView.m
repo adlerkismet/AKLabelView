@@ -117,7 +117,38 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
         return;
     }
 }
+#pragma mark - DataSource Edit
+- (void)addAKView:(AKView *)akView {
+    NSMutableArray *tempMutableArray = [NSMutableArray arrayWithArray:self.drawViewArray];
+    [tempMutableArray addObject:akView];
+    self.drawViewArray = [tempMutableArray copy];
+}
 
+- (void)removeAKView:(AKView *)akView {
+    if (!self.drawViewArray.count) {
+        return;
+    }
+    
+    NSMutableArray *tempMutableArray = [NSMutableArray arrayWithArray:self.drawViewArray];
+    [tempMutableArray removeObject:akView];
+    self.drawViewArray = [tempMutableArray copy];
+}
+
+- (void)addAKViews:(NSArray<AKView *> *)akViews {
+    NSMutableArray *tempMutableArray = [NSMutableArray arrayWithArray:self.drawViewArray];
+    [tempMutableArray addObjectsFromArray:akViews];
+    self.drawViewArray = [tempMutableArray copy];
+}
+
+- (void)removeViews:(NSArray<AKView *> *)akViews {
+    if (!self.drawViewArray.count || self.drawViewArray.count < akViews.count) {
+        return;
+    }
+    
+    NSMutableArray *tempMutableArray = [NSMutableArray arrayWithArray:self.drawViewArray];
+    [tempMutableArray removeObjectsInArray:akViews];
+    self.drawViewArray = [tempMutableArray copy];
+}
 #pragma mark - Hit testing
 
 - (BOOL)isAlphaVisibleAtPoint:(CGPoint)point
@@ -169,12 +200,7 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
 //    }
     
     BOOL response = NO;
-    
-//    if (self.image == nil) {
-//        response = YES;
-//    }
-    
-//    else {
+
     if ([self isAlphaVisibleAtPoint:point]) {
         response = YES;
     }
@@ -237,7 +263,7 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
         if ([view isKindOfClass:[AKLineView class]]) {
             AKLineView *lineView = (AKLineView *)view;
             if ([lineView isPonitAtLine:point]) {
-                NSLog(@"you touch : %@",[lineView description]);
+//                NSLog(@"you touch : %@",[lineView description]);
                 akView = lineView;
                 *stop = YES;
                 return;
@@ -248,7 +274,7 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
             AKArrowView *arrowView = (AKArrowView *)view;
             if (arrowView.arrowStyle == AKArrowStyle_Normal) {
                 if ([arrowView isPointAtArrow:point]) {
-                    NSLog(@"you touch : %@",[arrowView description]);
+//                    NSLog(@"you touch : %@",[arrowView description]);
                     akView = arrowView;
                     *stop = YES;
                     return;
@@ -257,7 +283,7 @@ static const CGFloat AlphaVisibleThreshold = 0.1f;
         }
         //其他的图像使用点是否在图像的曲线里面去判断
         if(CGPathContainsPoint(view.bezierPath.CGPath, NULL, point, YES)){
-            NSLog(@"you touch : %@",[view description]);
+//            NSLog(@"you touch : %@",[view description]);
             akView = view;
             *stop = YES;
             return;

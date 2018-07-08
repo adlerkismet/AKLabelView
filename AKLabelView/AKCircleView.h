@@ -10,5 +10,5 @@
 
 @interface AKCircleView : AKView
 @property (nonatomic, assign) AKPoint originPoint;
-@property (nonatomic, assign) NSInteger radius;
+@property (nonatomic, assign) CGFloat radius;
 @end

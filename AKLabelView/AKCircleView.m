@@ -29,6 +29,6 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"AKPolygonView with origin:(%d,%d) radius:%ld",self.originPoint.x,self.originPoint.y,self.radius];
+    return [NSString stringWithFormat:@"AKPolygonView with origin:(%.2lf,%.2lf) radius:%.2lf",self.originPoint.x,self.originPoint.y,self.radius];
 }
 @end

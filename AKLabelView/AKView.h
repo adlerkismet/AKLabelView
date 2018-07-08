@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "AKPoint.h"
+#include "AKPoint.h"
 static const NSInteger SOURCE_WIDTH = 1920;
 static const NSInteger SOURCE_HEIGHT = 1080;
-
-typedef struct AKPoint {
-    CGFloat x;
-    CGFloat y;
-}AKPoint;
 
 typedef NS_ENUM(NSInteger,FillRuleType) {
     FillRuleTypeNonZero = 0,

@@ -40,7 +40,7 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"TextView with text:%@ originPoint:(%d,%d)",self.text,self.originPoint.x,self.originPoint.y];
+    return [NSString stringWithFormat:@"TextView with text:%@ originPoint:(%.2lf,%.2lf)",self.text,self.originPoint.x,self.originPoint.y];
 }
 
 @end

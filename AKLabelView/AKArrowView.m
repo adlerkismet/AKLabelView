@@ -126,27 +126,27 @@
 - (void)calculateCoordinate{
     CGFloat arrowLineA,arrowLineB,arrowLineC;
     AKTranslateTwoPointsToLinearEquation(self.startCGPoint, self.endCGPoint, &arrowLineA, &arrowLineB, &arrowLineC);
-    NSLog(@"arrowLine(%f,%f,%f)",arrowLineA,arrowLineB,arrowLineC);
+//    NSLog(@"arrowLine(%f,%f,%f)",arrowLineA,arrowLineB,arrowLineC);
     [self calculateArrowNodePoint];
     
     CGFloat nodeLineA,nodeLineB,nodeLineC;
     AKTranslatePointAndNormalToLinearEquation(self.arrowNodePoint, -arrowLineA/arrowLineB, &nodeLineA, &nodeLineB, &nodeLineC);
-    NSLog(@"nodeLine(%f,%f,%f)",nodeLineA,nodeLineB,nodeLineC);
+//    NSLog(@"nodeLine(%f,%f,%f)",nodeLineA,nodeLineB,nodeLineC);
     
     CGFloat arrowLeftLineA,arrowLeftLineB,arrowLeftLineC;
     AKTranslateArcAndLineToLinearEquation(arrowLineA, arrowLineB, arrowLineC, self.arrowRectHeightF, self.arrowRectWidthF, true, self.endCGPoint, &arrowLeftLineA, &arrowLeftLineB, &arrowLeftLineC);
-    NSLog(@"arrowLeftLine(%f,%f,%f)",arrowLeftLineA,arrowLeftLineB,arrowLeftLineC);
+//    NSLog(@"arrowLeftLine(%f,%f,%f)",arrowLeftLineA,arrowLeftLineB,arrowLeftLineC);
     
     CGFloat arrowRightLineA,arrowRightLineB,arrowRightLineC;
     AKTranslateArcAndLineToLinearEquation(arrowLineA, arrowLineB, arrowLineC, self.arrowRectHeightF, self.arrowRectWidthF, false, self.endCGPoint, &arrowRightLineA, &arrowRightLineB, &arrowRightLineC);
-    NSLog(@"arrowRightLine(%f,%f,%f)",arrowRightLineA,arrowRightLineB,arrowRightLineC);
+//    NSLog(@"arrowRightLine(%f,%f,%f)",arrowRightLineA,arrowRightLineB,arrowRightLineC);
     
     CGPoint leftPoint,rightPoint;
     AKCalculateLinearEquationInTwoUnknows(nodeLineA, nodeLineB, nodeLineC, arrowLeftLineA, arrowLeftLineB, arrowLeftLineC, &(leftPoint.x), &(leftPoint.y));
     self.arrowLeftPoint = leftPoint;
     AKCalculateLinearEquationInTwoUnknows(nodeLineA, nodeLineB, nodeLineC, arrowRightLineA, arrowRightLineB, arrowRightLineC, &(rightPoint.x), &(rightPoint.y));
     self.arrowRightPoint = rightPoint;
-    NSLog(@"arrowLeftPoint:(%f,%f),arrowRightPoint:(%f,%f)",self.arrowLeftPoint.x,self.arrowLeftPoint.y,self.arrowRightPoint.x,self.arrowRightPoint.y);
+//    NSLog(@"arrowLeftPoint:(%f,%f),arrowRightPoint:(%f,%f)",self.arrowLeftPoint.x,self.arrowLeftPoint.y,self.arrowRightPoint.x,self.arrowRightPoint.y);
     
     /**
      * 计算连接点坐标
@@ -190,7 +190,7 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"Arrow From (%d,%d) To (%d,%d)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
+    return [NSString stringWithFormat:@"Arrow From (%.2lf,%.2lf) To (%.2lf,%.2lf)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
 }
 
 

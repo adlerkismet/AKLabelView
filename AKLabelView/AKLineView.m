@@ -60,6 +60,6 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"Line From (%d,%d) To (%d,%d)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
+    return [NSString stringWithFormat:@"Line From (%.2lf%.2lf) To (%.2lf,%.2lf)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
 }
 @end

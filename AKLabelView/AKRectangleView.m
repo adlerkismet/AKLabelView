@@ -35,7 +35,7 @@
 }
 
 - (NSString *)description{
-    return [NSString stringWithFormat:@"Rect from (%d,%d) to (%d,%d)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
+    return [NSString stringWithFormat:@"Rect from (%.2lf,%.2lf) to (%.2lf,%.2lf)",self.startPoint.x,self.startPoint.y,self.endPoint.x,self.endPoint.y];
 }
 
 - (CGRect)convertRectFromTwoPoint{
